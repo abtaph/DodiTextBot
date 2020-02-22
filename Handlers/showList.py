@@ -4,7 +4,7 @@ def showList(taskList, timeLeft, totalTime):
     print("=====================TASK LIST================")
     print("TIME LEFT: " + str(timeLeft) +
           " hours OUT OF: " + str(totalTime) + " hours")
-    if not taskList:
+    if len(taskList) == 0:
         print("NO MORE TASKS! GREAT JOB :)")
         print("if you would like to add another... type add task")
     else:

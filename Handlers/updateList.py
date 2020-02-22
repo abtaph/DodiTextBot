@@ -30,9 +30,12 @@ def updateList(taskList, timeLeft):
     elif(userInput in finish):
         print("Great job! Please give the number of the task you finished")
         taskNumber = input()
-        for task in range(1, len(taskList)):
-            if taskNumber == task:
-                taskList = taskList.pop(task)
+        print("im here")
+        for task in range(0, len(taskList)-1):
+            if int(taskNumber)-1 == task:
+                print("taskList: " + str(taskList))
+                taskList.pop(task)
+                print("taskList: " + str(taskList))
                 return taskList
     elif(userInput in add):
         print("Input your task description")
@@ -41,7 +44,7 @@ def updateList(taskList, timeLeft):
     elif(userInput in remove):
         print("Please give the number of the task you want to remove")
         taskNumber = input()
-        for task in range(1, len(taskList)):
-            if taskNumber == task:
-                taskList = taskList.pop(task)
+        for task in range(0, len(taskList)-1):
+            if taskNumber-1 == task:
+                taskList.pop(task)
                 return taskList

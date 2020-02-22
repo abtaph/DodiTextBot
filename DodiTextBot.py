@@ -11,14 +11,14 @@ Version 1.0.0 goals:
 x-Be able to input total time you have, tasks, how much time for each task 
 x-have Dodi warn the user if they have put too much on their plate
 x-display every task in a nice manner
--be able to update tasks as you complete them
+x-be able to update tasks as you complete them
 
 
 Stretch:
 -potentially be able to automatically count down the time
 -Look into if notifications are feasible and how they could be used
 -rate task by importance
--Dodi can use priorities to suggest either adding or sbtracting things you would like to get done
+-Dodi can use priorities to suggest either adding or subtracting things you would like to get done
 -Have a separate overall todo list that Dodi can take suggestions from
 -add GUI
 
