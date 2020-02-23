@@ -8,7 +8,7 @@ The idea is to be able to input how much time you have, along with what tasks yo
 want to accomplish and how much time you expect them to take.
 
 Version 1.0.0 goals:
-x-Be able to input total time you have, tasks, how much time for each task 
+x-Be able to input total time you have, tasks, how much time for each task
 x-have Dodi warn the user if they have put too much on their plate
 x-display every task in a nice manner
 x-be able to update tasks as you complete them
@@ -37,7 +37,6 @@ def home():
     taskInput = False
     close = False
     taskList = []
-   # timeStart = timeRep(time.strftime("%I"), time.strftime("%M"))
     print("Hello! How much time do we have today?: ")
     totalTime = input()
     done = False
@@ -49,9 +48,13 @@ def home():
         else:
             print("That's not a valid time :( try again")
             totalTime = input()
-    #timeFinish = timeRep(int(time.strftime("%I")) + totalTime)
-   # print("You have until " + str(timeStart.hour) + ":" + str(timeStart.minutes))
-    timeLeft = totalTime
+
+    timeFinish = timeRep(int(time.strftime("%I")) +
+                         totalTime, int(time.strftime("%M")))
+    print("You have until " + str(timeFinish.hour) +
+          ":" + str(timeFinish.minutes))
+    timeLeft = timeFinish - \
+        timeRep(int(time.strftime("%I")), int(time.strftime("%M")))
     while(taskInputDone != True):
         if(taskInput != True):
             print("What would you like to get done today?")
@@ -59,9 +62,10 @@ def home():
         else:
             newTask = inputTask(timeLeft)
             taskList += [newTask]
-            timeLeft -= newTask.finishTime
+            timeLeft = timeRep(
+                timeLeft.hour - newTask.finishTime, timeLeft.minutes)
             taskInput = False
-            if(timeLeft <= 0):
+            if(timeLeft.hour <= 0 and timeLeft.minutes <= 0):
                 print("Looks like we're out of time! Let's get started :)")
                 taskInputDone = True
             else:
@@ -69,11 +73,13 @@ def home():
                 cont = input()
                 no = ["n", "N", "NO", "No", "no", "nO"]
                 if (cont in no):
-                    if(timeLeft > 0):
+                    if(timeLeft.hour > 0 or timeLeft.minutes > 0):
                         print("and you still have " +
                               str(timeLeft) + " hours of free time!")
                     taskInputDone = True
     while(not close):
+        timeLeft = timeFinish - \
+            timeRep(int(time.strftime("%I")), int(time.strftime("%M")))
         showList(taskList, timeLeft, totalTime)
         taskList = updateList(taskList, timeLeft)
 

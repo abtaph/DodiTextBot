@@ -10,7 +10,7 @@ def inputTask(totalTime):
     done = False
 
     while(not done):
-        if(not newTime.isdigit() or int(newTime) > totalTime):
+        if(not newTime.isdigit() or int(newTime) > totalTime.hour):
             print("Oh no! That's an invalid time. Try again. You have " +
                   str(totalTime) + " hours left")
             newTime = input()
@@ -18,6 +18,5 @@ def inputTask(totalTime):
             newTime = int(newTime)
             done = True
     newTask = task(newTaskDescription, newTime)
-    print("Great! This task has been added to your list. You now have " +
-          str(totalTime - newTime) + " hours left")
+    print("Great! This task has been added to your list.")
     return newTask
