@@ -47,3 +47,5 @@ def updateList(taskList, timeLeft):
             if taskNumber-1 == task:
                 taskList.pop(task)
                 return
+    else:
+        print("Sorry I don't know that one. Try again!")

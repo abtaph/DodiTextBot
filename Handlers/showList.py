@@ -10,7 +10,8 @@ def showList(taskList, timeLeft, totalTime):
     if(totalTime >= taskTime):
         print("You have " + str(timeLeft.hour-taskTime) + " hours of free time")
     else:
-        print("!!!!!!!!!Oh no! It looks like you can't get all of this done in the allotted time.!!!!! \n !!!!!!!I would suggest removing an item or updating the amount of time it will take.!!!!!!!!")
+        print("Oh no! It looks like you can't get all of this done in the allotted time. \
+         \n !I would suggest removing an item or updating the amount of time it will take.")
     if len(taskList) == 0:
         print("NO MORE TASKS! GREAT JOB :)")
         print("if you would like to add another... type add task")

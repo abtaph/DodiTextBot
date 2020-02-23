@@ -15,7 +15,7 @@ x-be able to update tasks as you complete them
 
 
 Stretch:
--potentially be able to automatically count down the time
+x-potentially be able to automatically count down the time
 -Look into if notifications are feasible and how they could be used
 -rate task by importance
 -Dodi can use priorities to suggest either adding or subtracting things you would like to get done
@@ -33,8 +33,6 @@ from models.timeRep import *
 
 
 def home():
-    taskInputDone = False
-    taskInput = False
     close = False
     taskList = []
     print("Hello! How much time do we have today?: ")
@@ -52,31 +50,16 @@ def home():
     timeFinish = timeRep(int(time.strftime("%I")) +
                          totalTime, int(time.strftime("%M")))
     print("You have until " + str(timeFinish.hour) +
-          ":" + str(timeFinish.minutes))
+          ":" + str(timeFinish.minutes) + time.strftime("%p"))
     timeLeft = timeFinish - \
         timeRep(int(time.strftime("%I")), int(time.strftime("%M")))
-    while(taskInputDone != True):
-        if(taskInput != True):
-            print("What would you like to get done today?")
-            taskInput = True
-        else:
-            newTask = inputTask(timeLeft)
-            taskList += [newTask]
-            timeLeft = timeRep(
-                timeLeft.hour - newTask.finishTime, timeLeft.minutes)
-            taskInput = False
-            if(timeLeft.hour <= 0 and timeLeft.minutes <= 0):
-                print("Looks like we're out of time! Let's get started :)")
-                taskInputDone = True
-            else:
-                print("Would you like to input another task? Y/N")
-                cont = input()
-                no = ["n", "N", "NO", "No", "no", "nO"]
-                if (cont in no):
-                    if(timeLeft.hour > 0 or timeLeft.minutes > 0):
-                        print("and you still have " +
-                              str(timeLeft) + " hours of free time!")
-                    taskInputDone = True
+
+    print("What would you like to get done today?")
+    newTask = inputTask(timeLeft, timeFinish)
+    taskList += [newTask]
+    timeLeft = timeRep(
+        timeLeft.hour - newTask.finishTime, timeLeft.minutes)
+
     while(not close):
         timeLeft = timeFinish - \
             timeRep(int(time.strftime("%I")), int(time.strftime("%M")))
